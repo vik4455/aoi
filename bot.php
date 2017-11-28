@@ -31,13 +31,23 @@ if (!is_null($events['events'])) {
                 
                 switch(strtolower($txttel[0])){   
                     case 'm':
-                            $respMessage='mem phone '.$nid;
+                            $add_phone = $conn->query('INSERT INTO phone (idphone,name,phone) 
+                            VALUES ("'.$nid.'","'.$txttel[1].'","'.$txttel[2].'")');
+                            if (!$add_phone) {
+                                die('Add Phone : '.$conn->error);
+                            }
+                            $respMessage='บันทึกเบอร์ '$txttel[1].' -> '.$txttel[2].' เรียบร้อย';
                             break; 
                     case 's':
-                            $respMessage='show phone';
+                            $sch_phone = $conn->query('SELECT phone FROM phone WHERE name = "'.$txttel[0].'"');
+                            if (!$sch_phone) {
+                                die('Search Phone : '.$conn->error);
+                            }
+                            $tt = $sch_phone->fetch_assoc();
+                            $respMessage='เบอร์ของ '.$txttel[1].' คือ '.$tt['phone'];
                             break; 
                     default:
-                            $respMessage='format'; 
+                            $respMessage='พิมพ์ m,ชื่อเพื่อน,เบอร์โทร เพื่อบันทึก \n s,ชื่อเพื่อน เพื่อค้นหา'; 
                             break;
                 }
             } 
