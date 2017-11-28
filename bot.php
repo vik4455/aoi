@@ -36,7 +36,7 @@ if (!is_null($events['events'])) {
                             if (!$add_phone) {
                                 die('Add Phone : '.$conn->error);
                             }
-                            $respMessage='บันทึกเบอร์ '$txttel[1].' -> '.$txttel[2].' เรียบร้อย';
+                            $respMessage='บันทึกเบอร์ '.$txttel[1].' -> '.$txttel[2].' เรียบร้อย';
                             break; 
                     case 's':
                             $sch_phone = $conn->query('SELECT phone FROM phone WHERE name = "'.$txttel[0].'"');
