@@ -31,7 +31,7 @@ if (!is_null($events['events'])) {
                 
                 switch(strtolower($txttel[0])){   
                     case 'm':
-                            $respMessage='mem phone '.$mi['mi'];
+                            $respMessage='mem phone '.$mi['mi']+1;
                             break; 
                     case 's':
                             $respMessage='show phone';
