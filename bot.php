@@ -26,12 +26,12 @@ if (!is_null($events['events'])) {
             if (strpos($event['message']['text'], ',') !== false) {
                 $ins = $conn->query('SELECT MAX(idphone) AS mi FROM phone');
                 $mi = $ins->fetch_assoc();
-                
+                $nid = $mi['mi']+1;
                 $txttel =explode(',', $event['message']['text']); //รับค่าตัวอักษร
                 
                 switch(strtolower($txttel[0])){   
                     case 'm':
-                            $respMessage='mem phone '.$mi['mi']+1;
+                            $respMessage='mem phone '.$nid;
                             break; 
                     case 's':
                             $respMessage='show phone';
