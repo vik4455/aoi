@@ -56,7 +56,7 @@ if (!is_null($events['events'])) {
             }
             if($event['message']['text']=='ALL'){
                 $all_phone = $conn->query('SELECT name,phone FROM phone');
-                            if (!$sch_phone) {
+                            if (!$all_phone) {
                                 die('Search Phone : '.$conn->error);
                             } 
                 $respMessage='';
