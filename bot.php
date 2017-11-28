@@ -19,16 +19,25 @@ $events=json_decode($content, true);
 if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
+        include 'include/connect.php';
         $replyToken = $event['replyToken']; 
 		
         if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-            
-            include 'include/connect.php';
-            
-            $inc = $conn->query('SELECT * FROM phone WHERE name ="'.$event['message']['text'].'"');
-            $inc_c = $inc->num_rows;
-            
-            $respMessage = 'มี '.$inc_c;
+            if (strpos($event['message']['text'], ',') !== false) {
+                $txttel =explode(',', $event['message']['text']); //รับค่าตัวอักษร
+                $inc = $conn->query('SELECT * FROM phone WHERE name ="'.$event['message']['text'].'"');
+                $inc_c = $inc->num_rows;
+                switch(strtolower($txttel[0]))
+                    case 'm':
+                            $respMessage='mem phone';
+                            break; 
+                    case 's':
+                            $respMessage='show phone';
+                            break; 
+                    default:
+                            $respMessage='format'; 
+                    break;
+            } 
         }//if event
         
         $httpClient = new CurlHTTPClient($channel_token);
