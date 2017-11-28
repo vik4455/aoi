@@ -25,8 +25,8 @@ if (!is_null($events['events'])) {
         if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
             if (strpos($event['message']['text'], ',') !== false) {
                 $txttel =explode(',', $event['message']['text']); //รับค่าตัวอักษร
-                $inc = $conn->query('SELECT * FROM phone WHERE name ="'.$event['message']['text'].'"');
-                $inc_c = $inc->num_rows;
+                //$inc = $conn->query('SELECT * FROM phone WHERE name ="'.$event['message']['text'].'"');
+                //$inc_c = $inc->num_rows;
                 switch(strtolower($txttel[0]))
                     case 'm':
                             $respMessage='mem phone';
