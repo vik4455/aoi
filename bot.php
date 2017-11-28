@@ -39,7 +39,7 @@ if (!is_null($events['events'])) {
                             $respMessage='บันทึกเบอร์ '.$txttel[1].' -> '.$txttel[2].' เรียบร้อย';
                             break; 
                     case 's':
-                            $sch_phone = $conn->query('SELECT phone FROM phone WHERE name = "'.$txttel[0].'"');
+                            $sch_phone = $conn->query('SELECT phone FROM phone WHERE name = "'.$txttel[1].'"');
                             if (!$sch_phone) {
                                 die('Search Phone : '.$conn->error);
                             }
