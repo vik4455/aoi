@@ -47,9 +47,7 @@ if (!is_null($events['events'])) {
                             $respMessage='เบอร์ของ '.$txttel[1].' คือ '.$tt['phone'];
                             break; 
                     default:
-                            $respMessage='พิมพ์           
-                            m,ชื่อเพื่อน,เบอร์โทร เพื่อบันทึก  
-                            s,ชื่อเพื่อน เพื่อค้นหา'; 
+                            $respMessage='พิมพ์     - m,ชื่อเพื่อน,เบอร์โทร เพื่อบันทึก     -s,ชื่อเพื่อน เพื่อค้นหา'; 
                             break;
                 }
             } 
