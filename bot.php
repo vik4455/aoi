@@ -25,7 +25,7 @@ if (!is_null($events['events'])) {
             
             include 'include/connect.php';
             
-            $inc = $conn->query('SELECT * FROM phone');
+            $inc = $conn->query('SELECT * FROM phone WHERE name ="'.$event['message']['text'].'"');
             $inc_c = $inc->num_rows;
             
             $respMessage = 'มี '.$inc_c;
