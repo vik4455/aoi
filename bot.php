@@ -61,7 +61,8 @@ if (!is_null($events['events'])) {
                             } 
                 $respMessage='';
                 while($a = $all_phone->fetch_assoc()){
-                    $respMessage.=nl2br($a['name'].' '.$a['phone'].'\n');    
+                    $respMessage.=$a['name'].' '.$a['phone'].'
+';    
                 }
             }
         }//if event
