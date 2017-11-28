@@ -72,7 +72,7 @@ if (!is_null($events['events'])) {
                             break;
                 }
             }
-            if($event['message']['text']=='ALL'){
+            if(strtolower($event['message']['text'])=='all'){
                 $all_phone = $conn->query('SELECT name,phone FROM phone');
                             if (!$all_phone) {
                                 die('Search Phone : '.$conn->error);
