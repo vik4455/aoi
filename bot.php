@@ -45,7 +45,16 @@ if (!is_null($events['events'])) {
                                 die('Search Phone : '.$conn->error);
                             }
                             $tt = $sch_phone->fetch_assoc();
-                            $respMessage='เบอร์ของ '.$txttel[1].' คือ '.$tt['phone'];
+                            $respMessage='เบอร์ของ '.$txttel[1].' -> '.$tt['phone'];
+                            break;
+                    case 'w':
+                            $sch_phone = $conn->query('UPDATE phone SET phone = "'.$txttel[2].'" 
+                            WHERE name = "'.$txttel[1].'"');
+                            if (!$w_phone) {
+                                die('Write Phone : '.$conn->error);
+                            }
+                            $w = $w_phone->fetch_assoc();
+                            $respMessage='แก้ไขเบอร์ของ '.$txttel[1].' -> '.$txttel[2];
                             break;
                     case 'f':
                             $respMessage='พิมพ์
