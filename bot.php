@@ -23,6 +23,7 @@ if (!is_null($events['events'])) {
         $replyToken = $event['replyToken']; 
 		
         if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+            
             if (strpos($event['message']['text'], ',') !== false) {
                 $ins = $conn->query('SELECT MAX(idphone) AS mi FROM phone');
                 $mi = $ins->fetch_assoc();
@@ -45,14 +46,24 @@ if (!is_null($events['events'])) {
                             }
                             $tt = $sch_phone->fetch_assoc();
                             $respMessage='เบอร์ของ '.$txttel[1].' คือ '.$tt['phone'];
-                            break; 
-                    default:
+                            break;
+                    case 'f':
                             $respMessage='พิมพ์
 - m,ชื่อเพื่อน,เบอร์โทร เพื่อบันทึก
 - s,ชื่อเพื่อน เพื่อค้นหา'; 
                             break;
                 }
-            } 
+            }
+            if($event['message']['text']=='ALL'){
+                $all_phone = $conn->query('SELECT name,phone FROM phone');
+                            if (!$sch_phone) {
+                                die('Search Phone : '.$conn->error);
+                            } 
+                $respMessage='';
+                while($a = $all_phone->fetch_assoc()){
+                    $respMessage.=nl2br($a['name'].' '.$a['phone'].'\n');    
+                }
+            }
         }//if event
         
         $httpClient = new CurlHTTPClient($channel_token);
