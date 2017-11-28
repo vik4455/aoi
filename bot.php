@@ -54,7 +54,7 @@ if (!is_null($events['events'])) {
                                 die('Write Phone : '.$conn->error);
                             }
                             $respMessage='แก้ไขเบอร์ของ 
-                            '.$txttel[1].' -> '.$txttel[2];
+'.$txttel[1].' -> '.$txttel[2];
                             break;
                     case 'n':
                             $n_phone = $conn->query('UPDATE phone SET name = "'.$txttel[2].'" 
@@ -62,8 +62,8 @@ if (!is_null($events['events'])) {
                             if (!$n_phone) {
                                 die('Write Phone : '.$conn->error);
                             }
-                            $respMessage='แก้ไขชื่อจาก  
-                            '.$txttel[1].' -> '.$txttel[2];
+                            $respMessage='แก้ไขชื่อจาก 
+'.$txttel[1].' -> '.$txttel[2];
                             break;
                     case 'f':
                             $respMessage='พิมพ์
