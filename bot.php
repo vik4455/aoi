@@ -53,7 +53,6 @@ if (!is_null($events['events'])) {
                             if (!$w_phone) {
                                 die('Write Phone : '.$conn->error);
                             }
-                            $w = $w_phone->fetch_assoc();
                             $respMessage='แก้ไขเบอร์ของ '.$txttel[1].' -> '.$txttel[2];
                             break;
                     case 'f':
