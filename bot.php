@@ -24,12 +24,14 @@ if (!is_null($events['events'])) {
 		
         if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
             if (strpos($event['message']['text'], ',') !== false) {
+                $ins = $conn->query('SELECT MAX(idphone) AS mi FROM phone');
+                $mi = $ins->fetch_assoc();
+                
                 $txttel =explode(',', $event['message']['text']); //รับค่าตัวอักษร
-                //$inc = $conn->query('SELECT * FROM phone WHERE name ="'.$event['message']['text'].'"');
-                //$inc_c = $inc->num_rows;
+                
                 switch(strtolower($txttel[0])){   
                     case 'm':
-                            $respMessage='mem phone';
+                            $respMessage='mem phone '.$mi['mi'];
                             break; 
                     case 's':
                             $respMessage='show phone';
