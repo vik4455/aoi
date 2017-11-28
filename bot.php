@@ -48,7 +48,7 @@ if (!is_null($events['events'])) {
                             $respMessage='เบอร์ของ '.$txttel[1].' -> '.$tt['phone'];
                             break;
                     case 'w':
-                            $sch_phone = $conn->query('UPDATE phone SET phone = "'.$txttel[2].'" 
+                            $w_phone = $conn->query('UPDATE phone SET phone = "'.$txttel[2].'" 
                             WHERE name = "'.$txttel[1].'"');
                             if (!$w_phone) {
                                 die('Write Phone : '.$conn->error);
