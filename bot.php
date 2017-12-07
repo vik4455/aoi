@@ -59,6 +59,6 @@ function checktxt($cote)
             'dt' => $date('Y-m-d'),
             'user' => $event['source']['userId']
         );
-        return $params;
+        return $params['name'];
     }
 }
