@@ -21,14 +21,14 @@ if (!is_null($events['events'])) {
 	foreach ($events['events'] as $event) {
         include 'include/connect.php';
         $grp = $event['source']['groupId']
-        $us = $event['source']['userId']
+        $user = $event['source']['userId']
         $replyToken = $event['replyToken']; 
 		
         if ($event['type'] == 'message') {
             switch($event['message']['type']) {
                 case 'text':
                 $ct = $event['message']['text'];
-                $respMessage=checktxt($ct,$us,$grp);
+                $respMessage=checktxt($ct,$user,$grp);
                 break;
                 case 'image':
                 $respMessage='รูปภาพ';
