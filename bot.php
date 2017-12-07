@@ -26,6 +26,9 @@ if (!is_null($events['events'])) {
         $user = $event['source']['userId'];
         $replyToken = $event['replyToken'];
         
+        $ins = $conn->query('SELECT MAX(idmember) AS mm FROM member');
+                $mm = $ins->fetch_assoc();
+                $nid = str_pad($mm['mm']+1,3,"0",STR_PAD_LEFT);
 		$res = $bot->getProfile($user);
         if ($res->isSucceeded()) {
             $profile = $res->getJSONDecodedBody();
@@ -35,7 +38,7 @@ if (!is_null($events['events'])) {
             switch($event['message']['type']) {
                 case 'text':
                 $ct = $event['message']['text'];
-                $respMessage=checktxt($ct,$user,$grp,$displayName);
+                $respMessage=checktxt($ct,$displayName,$user);
                 break;
                 case 'image':
                 $respMessage='รูปภาพ';
@@ -47,10 +50,6 @@ if (!is_null($events['events'])) {
                 $respMessage='เสียง';
                 break;
             }   
-        }else if($event['type'] == 'join') {
-            if($event['source']['groupId']=="Cb01a760efcaa68ed9590969791ad0175"){
-                $respMessage='สวัสดีจ้า User';
-            }
         }
         
         $textMessageBuilder=new TextMessageBuilder($respMessage);
@@ -60,12 +59,18 @@ if (!is_null($events['events'])) {
 
 echo "OK";
 
-function checktxt($cote,$u,$g,$un)
+function checktxt($cote,$dpn,$mi)
 {
     $txt =explode(',', $cote);
-    if($txt[0]=="rg"){
-        $rname = $txt[1];
+    if(($txt[0]=="rg")&&(strlen($txt[1])==13)&&(is_numeric($txt[1]))){
         $dt = date('Y-m-d');
-        return "ลงทะเบียน ".$g." ชื่อ : ".$un." User ID : ".$u." วันที่ : ".$dt;
+        $add_user = $conn->query('INSERT INTO member (idmember,mem_name,mem_id,mem_card,mem_status,date_regis) 
+                            VALUES ("'.$nid.'","'.$dpn.'","'.$mi.'","'.$txt[1].'","11","'.$dt.'")');
+                            if (!$add_user) {
+                                die('Add Member : '.$conn->error);
+                            }
+        return "ลงทะเบียนสมาชิก ชื่อ : ".$dpn." User ID : ".$mi." วันที่ : ".$dt;
+    }else{
+        return "format ลงทะเบียนคือ rg,(เลขบัตรประชาชน)";
     }
 }
