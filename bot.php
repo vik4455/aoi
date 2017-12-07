@@ -53,7 +53,7 @@ echo "OK";
 function checktxt($cote)
 {
     $txt =explode(',', $cote);
-    if($txt=="rg"){
+    if($txt[0]=="rg"){
         $params = array(
             'name' => $txt[1],
             'dt' => $date('Y-m-d'),
