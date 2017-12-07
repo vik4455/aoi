@@ -25,7 +25,9 @@ if (!is_null($events['events'])) {
         if ($event['type'] == 'message') {
             switch($event['message']['type']) {
                 case 'text':
-                $respMessage='ข้อความ';
+                $ct = $event['message']['text'];
+                
+                $respMessage=checktxt($ct);
                 break;
                 case 'image':
                 $respMessage='รูปภาพ';
@@ -48,3 +50,8 @@ if (!is_null($events['events'])) {
 }
 
 echo "OK";
+
+function checktxt($cote)
+{
+    return $cote;
+}
