@@ -47,6 +47,10 @@ if (!is_null($events['events'])) {
                 $respMessage='เสียง';
                 break;
             }   
+        }else if($event['type'] == 'join') {
+            if($grp=="Cb01a760efcaa68ed9590969791ad0175"){
+                $respMessage='สวัสดีจ้า User';
+            }
         }
         
         $textMessageBuilder=new TextMessageBuilder($respMessage);
