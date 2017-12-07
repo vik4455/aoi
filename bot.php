@@ -20,8 +20,8 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
         include 'include/connect.php';
-        $grp = $event['source']['groupId']
-        $user = $event['source']['userId']
+        $grp = $event['source']['groupId'];
+        $user = $event['source']['userId'];
         $replyToken = $event['replyToken']; 
 		
         if ($event['type'] == 'message') {
