@@ -54,11 +54,9 @@ function checktxt($cote)
 {
     $txt =explode(',', $cote);
     if($txt[0]=="rg"){
-        $params = array(
-            'name' => $txt[1],
-            'dt' => $date('Y-m-d'),
-            'user' => $event['source']['userId']
-        );
-        return $params['name'];
+        $rname = $txt[1];
+        $dt = date('Y-m-d');
+        $user = $event['source']['userId'];
+        return "ลงทะเบียน ".$rname." User ID : ".$user." วันที่ : ".$dt;
     }
 }
