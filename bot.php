@@ -48,7 +48,7 @@ if (!is_null($events['events'])) {
                 break;
             }   
         }else if($event['type'] == 'join') {
-            if($grp=="Cb01a760efcaa68ed9590969791ad0175"){
+            if($event['source']['groupId']=="Cb01a760efcaa68ed9590969791ad0175"){
                 $respMessage='สวัสดีจ้า User';
             }
         }
