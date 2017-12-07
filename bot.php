@@ -22,15 +22,16 @@ if (!is_null($events['events'])) {
         include 'include/connect.php';
         $replyToken = $event['replyToken']; 
 		
-        if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-            
-            if (strpos($event['message']['text'], 'show') !== false) {
-                $ord = $conn->query('SELECT MAX(idmember) AS m FROM member');
-                $mm = $ord->fetch_assoc();
-                $newm = $mm['m']+1;
-                $respMessage='สวัสดีสมาชิกใหม่ เลขที่ : '.$newm;
-            }
-        }//if event
+        if ($event['type'] == 'message') {
+            switch($event['message']['type']) {
+                case 'text':
+                $respMessage='เรามาสนุกกัน';
+                break;    
+            }   
+        }
+        if ($event['type'] == 'join') {
+            $respMessage='สวัสดีค่ะ สมาชิกใหม่';
+        }
         
         $httpClient = new CurlHTTPClient($channel_token);
         $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret));
