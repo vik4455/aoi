@@ -53,5 +53,12 @@ echo "OK";
 function checktxt($cote)
 {
     $txt =explode(',', $cote);
-    return $txt[0]." -- ".$txt[1];
+    if($txt=="rg"){
+        $p = array(
+            'name' = $txt[1],
+            'dt' = $date('Y-m-d'),
+            'user' = $event['source']['userId']
+        );
+        return "Registered / name = ".$p['name']." user : ".$p['user']." วันที่ : ".$p['dt'];
+    }
 }
