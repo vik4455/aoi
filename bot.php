@@ -25,12 +25,18 @@ if (!is_null($events['events'])) {
         if ($event['type'] == 'message') {
             switch($event['message']['type']) {
                 case 'text':
-                $respMessage='เรามาสนุกกัน';
-                break;    
+                $respMessage='ข้อความ';
+                break;
+                case 'image':
+                $respMessage='รูปภาพ';
+                break;
+                case 'location':
+                $respMessage='สถานที่';
+                break;
+                case 'audio':
+                $respMessage='เสียง';
+                break;
             }   
-        }
-        if ($event['type'] == 'join') {
-            $respMessage='สวัสดีค่ะ สมาชิกใหม่';
         }
         
         $httpClient = new CurlHTTPClient($channel_token);
