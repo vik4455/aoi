@@ -52,9 +52,15 @@ echo "OK";
 
 function checktxt($cote)
 {
-    if($cote=="สมัคร"){
-        return "สมัครแล้ว";
-    }else if($cote=="รายละเอียด"){
+    $txt =explode(',', $event['message']['text']);
+    if($txt[0]=="สมัคร"){
+        $p = array(                 
+            'name' => $txt[1],                 
+            'dt' => date('Y-m-d'),                 
+            'user_id' => $event['source']['userId']
+        );
+        return "สมัครแล้ว".$p['name']." วันที่ ".$p['dt'];
+    }else if($txt[0]=="รายละเอียด"){
         return "รายละเอียดดังนี้";
     }
 }
