@@ -20,13 +20,15 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
         include 'include/connect.php';
+        $grp = $event['source']['groupId']
+        $us = $event['source']['userId']
         $replyToken = $event['replyToken']; 
 		
         if ($event['type'] == 'message') {
             switch($event['message']['type']) {
                 case 'text':
                 $ct = $event['message']['text'];
-                $respMessage=checktxt($ct);
+                $respMessage=checktxt($ct,$us,$grp);
                 break;
                 case 'image':
                 $respMessage='รูปภาพ';
@@ -50,13 +52,12 @@ if (!is_null($events['events'])) {
 
 echo "OK";
 
-function checktxt($cote)
+function checktxt($cote,$u,$g)
 {
     $txt =explode(',', $cote);
     if($txt[0]=="rg"){
         $rname = $txt[1];
         $dt = date('Y-m-d');
-        $user = $event['source']['userId'];
-        return "ลงทะเบียน ".$rname." User ID : ".$user." วันที่ : ".$dt;
+        return "ลงทะเบียน ".$g." ชื่อ ".$rname." User ID : ".$u." วันที่ : ".$dt;
     }
 }
