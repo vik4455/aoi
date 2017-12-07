@@ -54,11 +54,11 @@ function checktxt($cote)
 {
     $txt =explode(',', $cote);
     if($txt=="rg"){
-        $p = array(
+        $params = array(
             'name' => $txt[1],
             'dt' => $date('Y-m-d'),
             'user' => $event['source']['userId']
         );
-        return "Registered / name = ".$p['name']." user : ".$p['user']." วันที่ : ".$p['dt'];
+        return $params;
     }
 }
