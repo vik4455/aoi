@@ -52,6 +52,6 @@ echo "OK";
 
 function checktxt($cote)
 {
-    $txt =explode(',', $event['message']['text']);
+    $txt =explode(',', $cote);
     return $txt[0]." -- ".$txt[1];
 }
