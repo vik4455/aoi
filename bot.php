@@ -20,6 +20,7 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
         include 'include/connect.php';
+        $httpClient = new CurlHTTPClient($channel_token);
         $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret));
         $grp = $event['source']['groupId'];
         $user = $event['source']['userId'];
@@ -47,9 +48,6 @@ if (!is_null($events['events'])) {
                 break;
             }   
         }
-        
-        $httpClient = new CurlHTTPClient($channel_token);
-        
         
         $textMessageBuilder=new TextMessageBuilder($respMessage);
         $response=$bot->replyMessage($replyToken, $textMessageBuilder);
