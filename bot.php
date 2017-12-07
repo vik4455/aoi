@@ -71,8 +71,3 @@ if (!is_null($events['events'])) {
 }
 
 echo "OK";
-
-function checktxt($ni,$cote,$dpn,$mi)
-{
-    
-}
