@@ -20,16 +20,21 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
         include 'include/connect.php';
+        $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret));
         $grp = $event['source']['groupId'];
         $user = $event['source']['userId'];
-        $uname = $event['source']['displayName'];
-        $replyToken = $event['replyToken']; 
-		
+        $replyToken = $event['replyToken'];
+        
+		$res = $bot->getProfile($user);
+        if ($res->isSucceeded()) {
+            $profile = $res->getJSONDecodedBody();
+            $displayName = $profile['displayName'];
+        }
         if ($event['type'] == 'message') {
             switch($event['message']['type']) {
                 case 'text':
                 $ct = $event['message']['text'];
-                $respMessage=checktxt($ct,$user,$grp,$uname);
+                $respMessage=checktxt($ct,$user,$grp,$displayName);
                 break;
                 case 'image':
                 $respMessage='รูปภาพ';
@@ -44,7 +49,7 @@ if (!is_null($events['events'])) {
         }
         
         $httpClient = new CurlHTTPClient($channel_token);
-        $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret));
+        
         
         $textMessageBuilder=new TextMessageBuilder($respMessage);
         $response=$bot->replyMessage($replyToken, $textMessageBuilder);
@@ -59,6 +64,6 @@ function checktxt($cote,$u,$g,$un)
     if($txt[0]=="rg"){
         $rname = $txt[1];
         $dt = date('Y-m-d');
-        return "ลงทะเบียน ".$g." ชื่อ ".$un." User ID : ".$u." วันที่ : ".$dt;
+        return "ลงทะเบียน ".$g." ชื่อ : ".$un." User ID : ".$u." วันที่ : ".$dt;
     }
 }
