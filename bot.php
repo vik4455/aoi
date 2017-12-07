@@ -22,13 +22,14 @@ if (!is_null($events['events'])) {
         include 'include/connect.php';
         $grp = $event['source']['groupId'];
         $user = $event['source']['userId'];
+        $us = $event['source']['displayName'];
         $replyToken = $event['replyToken']; 
 		
         if ($event['type'] == 'message') {
             switch($event['message']['type']) {
                 case 'text':
                 $ct = $event['message']['text'];
-                $respMessage=checktxt($ct,$user,$grp);
+                $respMessage=checktxt($ct,$user,$grp,$uname);
                 break;
                 case 'image':
                 $respMessage='รูปภาพ';
@@ -52,12 +53,12 @@ if (!is_null($events['events'])) {
 
 echo "OK";
 
-function checktxt($cote,$u,$g)
+function checktxt($cote,$u,$g,$un)
 {
     $txt =explode(',', $cote);
     if($txt[0]=="rg"){
         $rname = $txt[1];
         $dt = date('Y-m-d');
-        return "ลงทะเบียน ".$g." ชื่อ ".$rname." User ID : ".$u." วันที่ : ".$dt;
+        return "ลงทะเบียน ".$g." ชื่อ ".$un." User ID : ".$u." วันที่ : ".$dt;
     }
 }
