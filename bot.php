@@ -38,7 +38,7 @@ if (!is_null($events['events'])) {
             switch($event['message']['type']) {
                 case 'text':
                 $ct = $event['message']['text'];
-                $respMessage=checktxt($ct,$displayName,$user);
+                $respMessage=checktxt($nid,$ct,$displayName,$user);
                 break;
                 case 'image':
                 $respMessage='รูปภาพ';
@@ -59,13 +59,13 @@ if (!is_null($events['events'])) {
 
 echo "OK";
 
-function checktxt($cote,$dpn,$mi)
+function checktxt($ni,$cote,$dpn,$mi)
 {
     $txt =explode(',', $cote);
     if(($txt[0]=="rg")&&(strlen($txt[1])==13)&&(is_numeric($txt[1]))){
         $dt = date('Y-m-d');
         $add_user = $conn->query('INSERT INTO member (idmember,mem_name,mem_id,mem_card,mem_status,date_regis) 
-                            VALUES ("'.$nid.'","'.$dpn.'","'.$mi.'","'.$txt[1].'","11","'.$dt.'")');
+                            VALUES ("'.$ni.'","'.$dpn.'","'.$mi.'","'.$txt[1].'","11","'.$dt.'")');
                             if (!$add_user) {
                                 die('Add Member : '.$conn->error);
                             }
