@@ -26,7 +26,6 @@ if (!is_null($events['events'])) {
             switch($event['message']['type']) {
                 case 'text':
                 $ct = $event['message']['text'];
-                
                 $respMessage=checktxt($ct);
                 break;
                 case 'image':
@@ -53,5 +52,9 @@ echo "OK";
 
 function checktxt($cote)
 {
-    return $cote;
+    if($cote=="สมัคร"){
+        return "สมัครแล้ว";
+    }else if($cote=="รายละเอียด"){
+        return "รายละเอียดดังนี้";
+    }
 }
