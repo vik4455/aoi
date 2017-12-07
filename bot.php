@@ -22,7 +22,7 @@ if (!is_null($events['events'])) {
         include 'include/connect.php';
         $grp = $event['source']['groupId'];
         $user = $event['source']['userId'];
-        $us = $event['source']['displayName'];
+        $uname = $event['source']['displayName'];
         $replyToken = $event['replyToken']; 
 		
         if ($event['type'] == 'message') {
